@@ -26,6 +26,12 @@ E-commerce full-stack para ÉLORIA, boutique mexicana de alta perfumería (preci
 - **P1**: Reclamar sandbox Stripe (onboarding_url compartida / email de Stripe) y KYC antes de deploy; endpoints de carrito server-side del spec (hoy el carrito es client-side, validado server-side al crear pedido); Docker/README externos al entorno.
 - **P2**: Exportar CSV de pedidos, imágenes múltiples por producto con upload a object storage, notificaciones email de pedido (integración Resend separada), cupones de descuento.
 
+## Exportación fuera de Emergent (2026-06-17)
+- Generado `/app/eloria-production.zip` (~329K, 128+ archivos): frontend + backend + tests + README.md profesional + `.env.example` (backend/frontend) + `docker-compose.yml` + Dockerfiles + `.gitignore`.
+- Limpieza de portabilidad SOLO en la copia exportada (app en vivo intacta): removidos `@emergentbase/overlay` y `@emergentbase/visual-edits` de package.json, scripts de Emergent/PostHog de index.html, `emergentintegrations` de requirements, fallback `sk_test_emergent`, password por defecto del seed, credenciales hardcodeadas en tests (ahora por env), y `src/constants/testIds` sin uso.
+- Escaneo de secretos: LIMPIO (sin claves Stripe, JWT, passwords, emails ni URLs de preview).
+- Verificación del ZIP en directorio limpio: backend arranca standalone con .env derivado de .env.example (seed crea 6 productos + admin, login OK, pedido COD EL-000001 con WhatsApp OK, dashboard OK, 401 sin auth) y `yarn install --frozen-lockfile` del frontend OK en 52s.
+
 ## Próximas tareas
 1. Usuario: cambiar número de WhatsApp real en /admin/configuracion.
 2. Usuario: actualizar datos bancarios reales (CLABE) en Configuración.
