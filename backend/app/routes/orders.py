@@ -32,7 +32,7 @@ async def list_orders(status: Optional[str] = Query(default=None),
 
 @router.get("/{order_id}")
 async def get_order(order_id: str):
-    order = await db.orders.find_one({"$or": [{"id": order_id}, {"folio": order_id}]})
+    order = await db.orders.find_one({"id": order_id})
     if not order:
         raise ApiError(404, "ORDER_NOT_FOUND", "Pedido no encontrado")
     return await attach_whatsapp(clean(order))

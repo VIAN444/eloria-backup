@@ -262,12 +262,12 @@ export default function CheckoutPage() {
               </button>
             ) : <span />}
             {step < 2 ? (
-              <button type="button" onClick={next} data-testid="checkout-next-button"
+              <button key="next" type="button" onClick={next} data-testid="checkout-next-button"
                       className="uppercase tracking-[0.18em] text-xs font-mono font-medium px-8 py-4 bg-stone-900 text-stone-50 hover:bg-amber-900 hover:text-white transition-colors">
                 Continuar
               </button>
             ) : (
-              <button type="submit" disabled={submitting} data-testid="checkout-submit-order-button"
+              <button key="submit" type="button" disabled={submitting} onClick={handleSubmit(onSubmit)} data-testid="checkout-submit-order-button"
                       className="uppercase tracking-[0.18em] text-xs font-mono font-medium px-8 py-4 bg-stone-900 text-stone-50 hover:bg-amber-900 hover:text-white transition-colors disabled:opacity-50">
                 {submitting ? "Procesando..." : paymentMethod === "card" ? "Pagar con tarjeta" : "Confirmar pedido"}
               </button>

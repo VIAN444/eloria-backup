@@ -1,0 +1,46 @@
+{
+  "summary": "Iteración 1: 24/24 tests de backend PASAN (auth, catálogo CRUD, órdenes COD/pickup/tarjeta, stock, Stripe checkout, webhook con firma inválida, dashboard, settings, inventario, categorías). UI: catálogo, carrito y admin funcionan; se detectó un BUG CRÍTICO en el checkout: hacer clic en 'Continuar' del paso Entrega dispara accidentalmente el submit del pedido con payment_method='card' por defecto, redirigiendo a Stripe sin que el usuario haya seleccionado método de pago. Reproducido consistentemente 3 veces.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "CheckoutPage.jsx (paso Entrega → Pago)",
+        "issue": "Al hacer clic en el botón 'Continuar' (checkout-next-button) del paso 1 (Entrega), el mismo espacio del DOM se re-renderiza como 'checkout-submit-order-button' (type=submit). El evento mouseup/click cae sobre el nuevo botón de submit, disparando handleSubmit() con los valores por defecto (payment_method='card'). Resultado: se crea el pedido y redirige a Stripe checkout sin permitir al usuario ver ni elegir método de pago. Reproducido 3/3 veces; screenshot muestra el paso 3 con 'Procesando...' y navegación posterior a checkout.stripe.com. El botón submit aparece disabled con 'Procesando...' mientras aún se ve la lista de métodos, confirmando el submit prematuro.",
+        "selector": "[data-testid=\"checkout-next-button\"] -> [data-testid=\"checkout-submit-order-button\"]",
+        "priority": "CRITICAL"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Checkout COD / bank_transfer",
+        "issue": "No se puede completar en UI porque el submit se dispara automáticamente al pasar al paso Pago (bug descrito arriba). Backend soporta correctamente ambos (verificado por tests pytest).",
+        "affected_selectors": ["checkout-payment-method-cash_on_delivery", "checkout-payment-method-bank_transfer", "checkout-submit-order-button"]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_eloria_backend.py",
+    "/app/test_reports/pytest/eloria_results.xml"
+  ],
+  "action_items": [
+    "CRÍTICO: Corregir el checkout para que 'Continuar' del paso Entrega no dispare submit. Opciones: (a) usar un `key` distinto en cada botón condicional para forzar unmount limpio, (b) renderizar SIEMPRE `type=\"button\"` y llamar `handleSubmit(onSubmit)()` manualmente en onClick del botón final, (c) usar dos slots separados (un <div> con next, otro con submit) en vez de reutilizar el mismo lugar. Recomendado (b) o (a).",
+    "Añadir test e2e (Playwright) al flujo checkout con COD y bank_transfer una vez corregido.",
+    "Considerar mover el botón submit dentro de un contenedor solo visible cuando step===2 y renderizar next en otro contenedor - garantizará que React desmonte por completo."
+  ],
+  "critical_code_review_comments": [
+    "CheckoutPage.jsx L264-274: los botones 'Continuar' y 'Confirmar pedido' comparten posición y se renderizan de forma condicional en el mismo slot; provoca el bug crítico anterior por reutilización de nodo React.",
+    "CheckoutPage.jsx: default payment_method='card' combinado con auto-submit hace que un usuario nunca vea el paso Pago si el bug ocurre.",
+    "server.py CORS: allow_origins depende de FRONTEND_URL con fallback a localhost:3000 (usa allow_credentials=True). Ok, pero verificar que FRONTEND_URL de preview esté fijado correctamente para producción.",
+    "orders.py: GET /api/orders/{order_id} es público (sin auth), permite consultar cualquier pedido por UUID o folio. Riesgo bajo (UUID es difícil de adivinar) pero folio es predecible (EL-000001…). Recomendar exigir email+folio o firmar un token en la URL de confirmación.",
+    "payments.py: OK, buen fallback en /payments/status que consulta Stripe directamente."
+  ],
+  "updated_files": ["/app/backend/tests/test_eloria_backend.py"],
+  "success_rate": {"backend": "100% (24/24)", "frontend": "~60% (catálogo/carrito/admin OK; checkout roto por bug crítico)"},
+  "test_credentials": "axelallison2005@gmail.com / Eloria2026! (probado con éxito)",
+  "seed_data_creation": "El backend seedea 6 productos y admin en startup. Tests crearon pedidos EL-000003+ (COD, bank_transfer, card) y algunos ajustes de stock. Los productos siguen con stock suficiente para pruebas.",
+  "retest_needed": true,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Reproducir el bug del checkout: agregar cualquier producto al carrito, ir a /checkout, llenar datos (paso 1), llenar dirección (paso 2), y hacer clic en 'Continuar' — se disparará el submit automáticamente y redirigirá a checkout.stripe.com aunque el usuario nunca haya elegido tarjeta. El backend está 100% funcional (24 tests pasan). El folio corriente al final de esta iteración estaba en EL-000006 aprox.",
+  "rca of the issue": "Al pasar de step=1 a step=2, React reutiliza el mismo `<button>` DOM node para renderizar el submit-button (line 270) en la posición donde antes estaba el next-button (line 265). Como el mouseup se dispara después del re-render sincronizado que ocurre dentro del onClick, el evento cae sobre el nuevo button type='submit', disparando el submit del <form>. Mitigación: (a) usar `key` únicos, (b) hacer el submit tipo 'button' e invocar handleSubmit manualmente, o (c) renderizar next y submit en slots DOM diferentes."
+}
