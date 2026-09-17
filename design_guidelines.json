@@ -1,0 +1,239 @@
+{
+  "project_name": "ÉLORIA - Alta Perfumería Boutique Mexicana",
+  "theme": "Minimalista Claro (Light Minimalist Luxury Editorial)",
+  "language": "es-MX",
+  "currency": "MXN ($)",
+  "persona_and_concept": {
+    "archetype": "Architectural Luxury & Botanical Craft (Swiss editorial meets French-Mexican artisanal perfumery)",
+    "aesthetic_direction": "Light minimalist, high-contrast monochrome backbone with warm bone/limestone canvas and sharp molten bronze-amber accents. No generic AI SaaS gradients. Unconventional asymmetrical layouts, spacious padding, tactile borders, editorial note-pyramids, and distinct dual experience (editorial immersive storefront vs. high-density precision admin command center).",
+    "emotional_tone": "Intimate, archival, sensuous, trustworthy, precision-crafted"
+  },
+  "typography": {
+    "google_fonts_import": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+    "font_family_roles": {
+      "display_and_headings": "font-serif ('Cormorant Garamond', Georgia, serif)",
+      "body_and_ui": "font-sans ('Outfit', -apple-system, sans-serif)",
+      "mono_and_technical": "font-mono ('JetBrains Mono', monospace)"
+    },
+    "hierarchy_rules": {
+      "hero_h1": "text-4xl sm:text-5xl lg:text-6xl font-serif font-light tracking-tight leading-tight",
+      "section_h2": "text-2xl sm:text-3xl lg:text-4xl font-serif font-normal tracking-tight leading-snug",
+      "subsection_h3": "text-xl sm:text-2xl font-serif font-medium tracking-tight",
+      "card_and_widget_h4": "text-lg sm:text-xl font-sans font-medium tracking-normal",
+      "body_primary": "text-base font-sans font-light leading-relaxed text-stone-700",
+      "body_secondary": "text-sm font-sans font-normal text-stone-500",
+      "eyebrow_and_labels": "text-xs font-mono uppercase tracking-[0.2em] text-stone-600",
+      "pricing_tag": "font-sans font-semibold text-stone-900 tracking-tight"
+    },
+    "anti_patterns": [
+      "DO NOT use Inter, Roboto, or Space Grotesk for headings or main labels",
+      "DO NOT exceed text-6xl for hero headings; avoid poster-size text jumps",
+      "Never center-align long blocks of product descriptions; use crisp left alignment with generous whitespace"
+    ]
+  },
+  "color_palette": {
+    "philosophy": "Archetype: Luxury & Organic Tactile. Pure whites (#FFFFFF) and Warm Bone/Linen (#FAF8F5, #F5F2EB) as base, Obsidian Carbon (#121212) for razor-sharp typography and boundaries, with Amber-Ochre (#C58A3E, #9E6B28) as the perfume essence accent.",
+    "css_variables_light": {
+      "--background": "40 25% 98%",
+      "--foreground": "20 10% 12%",
+      "--card": "0 0% 100%",
+      "--card-foreground": "20 10% 12%",
+      "--popover": "0 0% 100%",
+      "--popover-foreground": "20 10% 12%",
+      "--primary": "20 10% 12%",
+      "--primary-foreground": "40 25% 98%",
+      "--secondary": "40 18% 94%",
+      "--secondary-foreground": "20 10% 15%",
+      "--muted": "40 12% 93%",
+      "--muted-foreground": "30 6% 45%",
+      "--accent": "35 55% 51%",
+      "--accent-foreground": "0 0% 100%",
+      "--destructive": "0 72% 51%",
+      "--destructive-foreground": "0 0% 98%",
+      "--border": "35 15% 88%",
+      "--input": "35 15% 88%",
+      "--ring": "35 55% 51%",
+      "--radius": "0.25rem"
+    },
+    "custom_palette_hex": {
+      "bg_canvas": "#FAF8F5",
+      "bg_card": "#FFFFFF",
+      "bg_subtle": "#F4F0E8",
+      "text_obsidian": "#141413",
+      "text_charcoal": "#2C2A29",
+      "text_muted": "#75716B",
+      "text_subtle": "#A39E96",
+      "accent_amber": "#C58A3E",
+      "accent_amber_hover": "#A9722C",
+      "accent_terracotta": "#B85D3B",
+      "border_tactile": "#E7E2D8",
+      "border_dark": "#2B2826",
+      "status_success": "#2D6A4F",
+      "status_warning": "#C58A3E",
+      "status_error": "#9E2A2B"
+    },
+    "rules": {
+      "no_heavy_gradients": "No generic 3-stop saturated gradients. Only subtle linear shade from canvas to crisp white or 5% amber glow.",
+      "contrast_compliance": "Obsidian text on Linen/White yields > 12:1 APCA rating. Amber text must use deep ochre #9E6B28 for small text to pass WCAG AA (4.5:1).",
+      "interactive_hover": "Hover states must explicitly set text and background color (e.g. hover:bg-stone-900 hover:text-stone-50)."
+    }
+  },
+  "spacing_and_layout_rules": {
+    "scale_philosophy": "Generous luxury spacing (2-3x typical density). Use p-6, p-8, p-12, p-16, py-20, py-28 for editorial breathe.",
+    "container_padding_rule": "Every bordered container MUST have at least p-6 or p-8 internal padding to eliminate text collisions.",
+    "header_nav": {
+      "strategy": "Crystal Glass with warm blur: backdrop-blur-md bg-stone-50/90 border-b border-stone-200/80 sticky top-0 z-50",
+      "desktop_view": "Always display: Logo 'ÉLORIA' in Cormorant Garamond, Category Nav Links (Colección, Familias Olfativas, El Manifiesto, Novedades, Sobre Nosotros), Search trigger, Cart Drawer trigger with count pill, Currency MXN indicator, and Admin/Account link. NEVER hide desktop nav behind a hamburger menu.",
+      "height": "h-20 sm:h-24 px-6 md:px-12 flex items-center justify-between"
+    },
+    "grid_modes": {
+      "storefront_catalog": "Asymmetrical editorial grid. Base 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-10'. Spotlight first featured bottle with col-span-1 sm:col-span-2 lg:col-span-2 row-span-2 for visual tension.",
+      "product_detail_layout": "Split architectural layout: 7-column gallery / hero image on left with zoom and scent aura, 5-column editorial panel on right with notes pyramid (Salida, Corazón, Fondo), real-time stock indicator pill, size selector (50ml, 100ml, Discovery Set 10ml), Add to Cart button, and accordion details.",
+      "checkout_stepper": "Linear focused breadcrumb stepper (1. Datos Personales -> 2. Método de Envío [Domicilio / Puntos Pick-up] -> 3. Método de Pago [Tarjeta Stripe, Transferencia SPEI, Contra Entrega] -> 4. Confirmación + WhatsApp link). Centered max-w-4xl container with 2-column breakdown (Form on left, Order Summary & Scent Samples on right).",
+      "admin_dashboard": "High-density Mode B Protocol. Strict grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5. Flat surfaces, 1px tactile borders, no card shadows, instant scanability with metric KPIs (Ventas Totales MXN, Pedidos Pendientes, Valor Promedio, Stock Crítico)."
+    }
+  },
+  "component_styling_specifications": {
+    "buttons": {
+      "primary": "rounded-none uppercase tracking-[0.18em] text-xs font-mono font-medium px-8 py-4 bg-stone-900 text-stone-50 hover:bg-amber-900 hover:text-white transition-colors duration-200 shadow-sm",
+      "secondary": "rounded-none uppercase tracking-[0.18em] text-xs font-mono font-medium px-8 py-4 bg-transparent border border-stone-800 text-stone-900 hover:bg-stone-900 hover:text-white transition-colors duration-200",
+      "accent_whatsapp": "rounded-none inline-flex items-center gap-2 uppercase tracking-[0.15em] text-xs font-mono font-medium px-7 py-3.5 bg-emerald-800 text-white hover:bg-emerald-900 transition-colors duration-200",
+      "ghost": "text-stone-700 hover:text-stone-950 font-sans text-sm tracking-wide transition-colors"
+    },
+    "product_cards": {
+      "container": "group relative bg-white border border-stone-200/90 p-5 md:p-6 transition-all duration-300 hover:border-stone-900 hover:-translate-y-1",
+      "image_wrapper": "relative aspect-[3/4] w-full overflow-hidden bg-stone-100 flex items-center justify-center mb-5",
+      "badge": "absolute top-3 left-3 bg-stone-900/90 text-stone-100 text-[10px] font-mono uppercase tracking-[0.15em] px-2.5 py-1",
+      "title": "font-serif text-xl sm:text-2xl text-stone-900 group-hover:text-amber-800 transition-colors",
+      "olfactory_family": "text-xs font-mono uppercase tracking-widest text-stone-500 mt-1",
+      "price": "text-base font-sans font-semibold text-stone-900 mt-3",
+      "action": "mt-4 w-full border border-stone-900 text-stone-900 py-2.5 text-xs font-mono uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-colors"
+    },
+    "inputs_and_forms": {
+      "text_inputs": "rounded-none bg-stone-50/50 border border-stone-300 px-4 py-3 text-sm font-sans text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-stone-900 focus:ring-1 focus:ring-stone-900 transition-all",
+      "select_dropdowns": "rounded-none bg-white border border-stone-300 px-4 py-3 text-sm font-sans text-stone-900 focus:outline-none focus:border-stone-900",
+      "radio_cards": "border border-stone-300 p-4 cursor-pointer transition-all hover:border-stone-500 aria-checked:border-stone-900 aria-checked:bg-stone-50"
+    },
+    "admin_tables": {
+      "container": "w-full overflow-x-auto border border-stone-200 bg-white",
+      "table_head": "bg-stone-100/70 border-b border-stone-200 text-left text-xs font-mono uppercase tracking-widest text-stone-600 px-5 py-3.5",
+      "table_row": "border-b border-stone-100 hover:bg-stone-50/80 transition-colors px-5 py-4 text-sm font-sans text-stone-800",
+      "status_badge": "inline-flex items-center px-2.5 py-1 text-xs font-mono tracking-wider uppercase"
+    }
+  },
+  "motion_and_interactions": {
+    "library": "framer-motion",
+    "philosophy": "Gentle, weighted, architectural inertia. Fast enough for rapid shopping, sensory enough for high-end perfumery.",
+    "transitions": {
+      "subtle_fade_up": {
+        "initial": { "opacity": 0, "y": 14 },
+        "animate": { "opacity": 1, "y": 0 },
+        "transition": { "duration": 0.45, "ease": [0.22, 1, 0.36, 1] }
+      },
+      "stagger_catalog": {
+        "staggerChildren": 0.08
+      },
+      "slide_over_cart": {
+        "initial": { "x": "100%" },
+        "animate": { "x": 0 },
+        "exit": { "x": "100%" },
+        "transition": { "type": "spring", "damping": 30, "stiffness": 300 }
+      }
+    },
+    "a11y_rule": "Respect prefers-reduced-motion via Framer Motion useReducedMotion() hook."
+  },
+  "storefront_vs_admin_guidance": {
+    "storefront": {
+      "tone": "Editorial, sensory, immersive luxury fragrance journal",
+      "background": "bg-[#FAF8F5] with crisp white card accents",
+      "navigation": "Prominent sticky header with brand narrative, olfactory wheel, discovery quiz/filter, cart drawer",
+      "catalog_features": "Filter by family (Amaderada, Floral, Cítrica, Oriental, Gourmand, Cuero), intensity filter, stock alert ('Solo 3 disponibles'), quick add-to-cart",
+      "checkout_features": "4 distinct steps, shipping selector (Envío estándar a domicilio, Express CDMX/Guadalajara/Mty, Puntos Pickup en boutiques aliadas Polanco/Roma/San Pedro), payment triggers (Stripe Card, Transferencia SPEI CLABE, Pago contra entrega en efectivo), WhatsApp order confirmation deeplink with prepopulated order summary text"
+    },
+    "admin": {
+      "tone": "High-density Precision Command Center for Mexican boutique management",
+      "background": "bg-[#F4F3F0] with stark pure white work surfaces",
+      "navigation": "Clean persistent dark sidebar (w-64) with ÉLORIA crest, links to Panel Principal, Catálogo de Productos, Categorías / Notas, Inventario & Lotes, Pedidos, Clientes, Métodos de Envío, Puntos Pickup, Configuración General, y Salir",
+      "components": "Dense metric cards, stock status indicators with low stock alerts, inline edit capabilities, export CSV/Order detail modal, WhatsApp direct contact button for customers"
+    }
+  },
+  "image_urls": {
+    "hero_banner": {
+      "url": "https://images.unsplash.com/photo-1547887537-6158d64c35b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwzfHxmcmFncmFuY2UlMjBwZXJmdW1lJTIwZ2xhc3MlMjBtaW5pbWFsfGVufDB8fHx8MTc4OTYwODc4N3ww&ixlib=rb-4.1.0&q=85",
+      "alt": "ÉLORIA Alta Perfumería frasco minimalista con luz dorada",
+      "category": "hero_storefront",
+      "caption": "Frasco icónico de cristal facetado capturando la luz cálida matutina"
+    },
+    "featured_collection_1": {
+      "url": "https://images.unsplash.com/photo-1622618991746-fe6004db3a47?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwxfHxhbWJlciUyMHBlcmZ1bWUlMjBib3R0bGUlMjBsdXh1cnl8ZW58MHx8fHwxNzg5NjA4Nzg3fDA&ixlib=rb-4.1.0&q=85",
+      "alt": "ÉLORIA Ámbar Silvestre Eau de Parfum",
+      "category": "product_oriental_amber",
+      "product_name": "Ámbar Silvestre",
+      "price_mxn": 2450
+    },
+    "featured_collection_2": {
+      "url": "https://images.unsplash.com/photo-1458538977777-0549b2370168?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwxfHxmcmFncmFuY2UlMjBwZXJmdW1lJTIwZ2xhc3MlMjBtaW5pbWFsfGVufDB8fHx8MTc4OTYwODc4N3ww&ixlib=rb-4.1.0&q=85",
+      "alt": "ÉLORIA Neroli & Copal Blanco",
+      "category": "product_citrus_resins",
+      "product_name": "Neroli & Copal Blanco",
+      "price_mxn": 2850
+    },
+    "featured_collection_3": {
+      "url": "https://images.unsplash.com/photo-1543422655-ac1c6ca993ed?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHw0fHxmcmFncmFuY2UlMjBwZXJmdW1lJTIwZ2xhc3MlMjBtaW5pbWFsfGVufDB8fHx8MTc4OTYwODc4N3ww&ixlib=rb-4.1.0&q=85",
+      "alt": "ÉLORIA Santal & Vainilla de Papantla",
+      "category": "product_woody_gourmand",
+      "product_name": "Santal & Vainilla de Papantla",
+      "price_mxn": 3200
+    },
+    "featured_collection_4": {
+      "url": "https://images.pexels.com/photos/13875783/pexels-photo-13875783.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "alt": "ÉLORIA Dúo Escultural Edición Coleccionista",
+      "category": "product_limited_edition",
+      "product_name": "Edición Dual Nocturna",
+      "price_mxn": 4800
+    },
+    "featured_collection_5": {
+      "url": "https://images.pexels.com/photos/12456259/pexels-photo-12456259.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "alt": "ÉLORIA Cuero de Oaxaca & Humo Sagrado",
+      "category": "product_leather_smoke",
+      "product_name": "Cuero Negro & Humo Sagrado",
+      "price_mxn": 3450
+    },
+    "featured_collection_6": {
+      "url": "https://images.unsplash.com/photo-1610113233329-1c73b6f7fe98?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBwZXJmdW1lJTIwYm90dGxlJTIwYWVzdGhldGljfGVufDB8fHx8MTc4OTYwODc3OXww&ixlib=rb-4.1.0&q=85",
+      "alt": "ÉLORIA Rosa Centifolia & Pimienta Rosa",
+      "category": "product_floral_spicy",
+      "product_name": "Rosa Centifolia & Pimienta",
+      "price_mxn": 2650
+    }
+  },
+  "testing_attributes_protocol": {
+    "requirement": "MUST use kebab-case role-based data-testid on every interactive button, input, navigation link, card, cart drawer, checkout step, WhatsApp link, and admin table action.",
+    "examples": [
+      "data-testid=\"nav-link-coleccion\"",
+      "data-testid=\"nav-cart-trigger\"",
+      "data-testid=\"product-card-1\"",
+      "data-testid=\"product-card-add-to-cart-1\"",
+      "data-testid=\"filter-category-amaderada\"",
+      "data-testid=\"cart-drawer-checkout-button\"",
+      "data-testid=\"checkout-step-customer-data\"",
+      "data-testid=\"checkout-input-full-name\"",
+      "data-testid=\"checkout-delivery-method-pickup\"",
+      "data-testid=\"checkout-payment-method-stripe\"",
+      "data-testid=\"checkout-submit-order-button\"",
+      "data-testid=\"order-confirmation-whatsapp-link\"",
+      "data-testid=\"admin-sidebar-nav-products\"",
+      "data-testid=\"admin-create-product-button\"",
+      "data-testid=\"admin-order-status-select-1\""
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Load Google Fonts Cormorant Garamond, Outfit, and JetBrains Mono in public/index.html and tailwind.config.js.",
+    "Implement ÉLORIA in pure Mexican Spanish language with MXN currency format (e.g., '$2,450 MXN').",
+    "Keep Light Minimalist aesthetic: #FAF8F5 background, crisp white cards, sharp stone-900 border and typography, warm amber accents.",
+    "Build the complete e-commerce experience: Catalog with category filters, Search, Product Detail Modal/View with Olfactory Notes pyramid (Salida, Corazón, Fondo), Stock status, Slide-over Cart with instant quantity adjustments.",
+    "Multi-step checkout: 1) Datos del Cliente (Nombre, Email, Teléfono, RFC opcional), 2) Envío (Envío a Domicilio con cálculo o Puntos Pick-up en boutiques CDMX/Guadalajara/Monterrey), 3) Método de Pago (Tarjeta con Stripe UI simulado, Transferencia SPEI con CLABE bancaria de Banorte/BBVA, Pago contra entrega en efectivo), 4) Confirmación con folio único y botón directo con deep link 'Enviar pedido a WhatsApp' (https://wa.me/52... con mensaje URL codificado detallando el pedido).",
+    "Build protected /admin panel accessible with mock auth or demo bypass: Dashboard with sales analytics chart using Recharts, CRUD management for Products, Categories, Inventory stock alerts, Orders (with status updates: Pendiente, Pagado, En Preparación, Enviado, Entregado), Delivery methods & Pickup points, and Store Settings.",
+    "Ensure all interactive elements have data-testid attributes for automated testing."
+  ]
+}
