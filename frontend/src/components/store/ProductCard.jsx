@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fmtMXN } from "@/api/client";
 import { useCart } from "@/context/CartContext";
+import ReactGA from "react-ga4";
 
 export function ProductCard({ product, featured = false }) {
   const { addItem } = useCart();
@@ -45,9 +46,19 @@ export function ProductCard({ product, featured = false }) {
       </Link>
       <button
         disabled={out}
-        onClick={() => addItem(product)}
+        onClick={() => {
+          addItem(product); // Mantiene la función original de agregar al carrito
+
+          // AGREGAMOS EL EVENTO DE ANALYTICS AQUÍ:
+          ReactGA.event('add_to_cart', {
+            product_name: product.name,
+            product_id: product.id,
+            price: product.price,
+            currency: 'MXN'
+          });
+        }}
         data-testid={`product-card-add-to-cart-${product.id}`}
-        className="mt-4 w-full border border-stone-900 text-stone-900 py-2.5 text-xs font-mono uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-stone-900"
+        className="mt-4 w-full border border-stone-900 text-stone-900 py-2.5 text-xs font-mono uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:text-stone-900"
       >
         {out ? "Agotado" : "Agregar al carrito"}
       </button>

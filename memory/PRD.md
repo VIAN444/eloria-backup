@@ -32,6 +32,12 @@ E-commerce full-stack para ÉLORIA, boutique mexicana de alta perfumería (preci
 - Escaneo de secretos: LIMPIO (sin claves Stripe, JWT, passwords, emails ni URLs de preview).
 - Verificación del ZIP en directorio limpio: backend arranca standalone con .env derivado de .env.example (seed crea 6 productos + admin, login OK, pedido COD EL-000001 con WhatsApp OK, dashboard OK, 401 sin auth) y `yarn install --frozen-lockfile` del frontend OK en 52s.
 
+## Chatbot Elori (2026-06-17)
+- Botón flotante inferior-derecha en todas las páginas de la tienda (`src/components/store/ChatWidget.jsx`, montado en `StoreLayout`).
+- Backend `app/routes/chat.py`: `POST /api/chat/stream` (SSE, tokens en vivo) + `GET /api/chat/history/{session_id}`. Motor: OpenAI `gpt-5.4` vía emergentintegrations; key = `OPENAI_API_KEY` con fallback a `EMERGENT_LLM_KEY`.
+- El catálogo real (productos activos con stock) se inyecta en cada system prompt → productos nuevos se consideran automáticamente. Recomendaciones con marcador `[[producto:ID]]` validado contra la DB; la UI renderiza tarjeta con enlace directo al producto. Historial persistido en colección `chat_messages` por `session_id` (localStorage).
+- Persona: amable, dulce, cercana, español mexicano cálido; 1 pregunta por mensaje (fresco/cálido/dulce), recomienda tras 2-4 respuestas. Verificado E2E: saludo streaming, conversación, recomendación de Santal & Vainilla de Papantla + Ámbar Silvestre con enlaces, persistencia de historial.
+
 ## Próximas tareas
 1. Usuario: cambiar número de WhatsApp real en /admin/configuracion.
 2. Usuario: actualizar datos bancarios reales (CLABE) en Configuración.

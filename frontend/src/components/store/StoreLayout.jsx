@@ -4,6 +4,7 @@ import { ShoppingBag, MessageCircle } from "lucide-react";
 import { api } from "@/api/client";
 import { useCart } from "@/context/CartContext";
 import { CartDrawer } from "./CartDrawer";
+import { ChatWidget } from "./ChatWidget";
 
 export default function StoreLayout() {
   const { count, setOpen } = useCart();
@@ -82,6 +83,7 @@ export default function StoreLayout() {
       </footer>
 
       <CartDrawer />
+      <ChatWidget />
     </div>
   );
 }

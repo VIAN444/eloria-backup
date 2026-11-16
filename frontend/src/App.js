@@ -19,7 +19,9 @@ import OrdersPage from "@/pages/admin/OrdersPage";
 import CustomersPage from "@/pages/admin/CustomersPage";
 import DeliveryPage from "@/pages/admin/DeliveryPage";
 import SettingsPage from "@/pages/admin/SettingsPage";
+import ReactGA from "react-ga4";
 
+ReactGA.send({ hitType: "pageview" });
 function App() {
   return (
     <div className="App">

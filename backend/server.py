@@ -14,7 +14,7 @@ from starlette.exceptions import HTTPException
 from starlette.middleware.cors import CORSMiddleware
 
 from app.core.database import client, ensure_indexes
-from app.routes import admin, auth, catalog, orders, payments
+from app.routes import admin, auth, catalog, chat, orders, payments
 from app.seed import seed
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
@@ -27,6 +27,7 @@ app.include_router(catalog.router)
 app.include_router(orders.router)
 app.include_router(payments.router)
 app.include_router(admin.router)
+app.include_router(chat.router)
 
 
 @app.exception_handler(HTTPException)
